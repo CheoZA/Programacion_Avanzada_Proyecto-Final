@@ -1,0 +1,35 @@
+﻿@model List<TiendaVideojuegos.Models.Genero>
+@{
+    ViewBag.Title = "Lista de géneros";
+}
+
+<h2 class="text-center text-success">Listado de Categorias</h2>
+<div class="well well-sm"><a class="btn btn-primary" href="~/Genero/Create">Nuevo</a></div>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr class="bg-primary">
+            <th>Id</th>
+            <th>Nombre</th>
+            <th colspan="3">Operaciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var genero in Model)
+        {
+            <tr>
+                <td>@genero.IdGenero</td>
+                <td>@genero.NombreGenero</td>
+                <td><a class="btn btn-success" href="~/Genero/Find/@genero.IdGenero"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                <td><a class="btn btn-info" href="~/Genero/Update/@genero.IdGenero"><span class="fa fa-edit"></span></a></td>
+                <td><a class="btn btn-danger" href="~/Genero/Delete/@genero.IdGenero"><span class="fa fa-trash-o"></span></a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@{
+    if (!string.IsNullOrEmpty(ViewBag.MensajeError))
+    {
+        <div class="text-primary text-danger text-center">>@ViewBag.MensajeError</div>
+    }
+}

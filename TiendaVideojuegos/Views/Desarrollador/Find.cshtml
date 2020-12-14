@@ -1,0 +1,34 @@
+﻿@model List<TiendaVideojuegos.Models.Juego>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr class="bg-primary">
+            <th>Id</th>
+            <th>Descripción</th>
+            <th>Genero</th>
+            <th>Desarrollador</th>
+            <th>Categoria</th>
+            <th>Precio Unitario</th>
+            <th>En almacen</th>
+            <th colspan="3">Operaciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var juego in Model)
+        {
+            <tr>
+                <td>@juego.IdJuego</td>
+                <td>@juego.NombreJuego</td>
+                <td>@juego.Genero.NombreGenero</td>
+                <td>@juego.Desarrollador.NombreDesarrollador</td>
+                <td>@juego.Clasificacion</td>
+                <td>@juego.Precio</td>
+                <td>@juego.CantidadEnStock</td>
+                <td><a class="btn btn-success" href="~/Juegos/Find/@juego.IdJuego"><span class="glyphicon glyphicon-eye-open"></span>Ver Productos</a></td>
+                <td><a class="btn btn-info" href="~/Juegos/Update/@juego.IdJuego"><span class="fa fa-edit"></span></a></td>
+                <td><a class="btn btn-danger" href="~/Juegos/Delete/@juego.IdJuego"><span class="fa fa-trash-o"></span></a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>

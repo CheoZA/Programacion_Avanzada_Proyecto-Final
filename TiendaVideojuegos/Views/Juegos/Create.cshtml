@@ -1,0 +1,74 @@
+﻿@model TiendaVideojuegos.Models.Juego
+@{
+    ViewBag.Title = "Nuevo Juego";
+}
+
+@{
+    Html.EnableClientValidation(false);
+}
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <fieldset>
+            <div class="form-group">
+                <!--NombreJuego-->
+                @Html.LabelFor(model => model.NombreJuego, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.NombreJuego, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                <!--Genero-->
+                @Html.LabelFor(model => model.Genero.NombreGenero, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6 dropdown">
+                    @Html.DropDownListFor(model => model.IdGenero, ViewBag.ListaGeneros as SelectList, "Seleccione un género", htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <!--Desarrollador-->
+                @Html.LabelFor(model => model.Desarrollador.NombreDesarrollador, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6 dropdown">
+                    @Html.DropDownListFor(model => model.IdDesarrollador, ViewBag.ListaDesarrolladores as SelectList, "Seleccione un desarrollador", htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <!--Clasificación-->
+                @Html.LabelFor(model => model.Clasificacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Clasificacion, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                <!--Precio-->
+                @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                <!--CantidadEnStock-->
+                @Html.LabelFor(model => model.CantidadEnStock, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.CantidadEnStock, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="form-actions col-md-offset-2">
+            <input class="btn btn-primary" type="submit" name="btnguardar" value="Guardar" />|
+            @Html.ActionLink("Regresar al Listado", "Index")
+        </div>
+    </div>
+
+}
+
+@{
+    if (!string.IsNullOrEmpty(ViewBag.MensajeExito))
+    {
+        <div class="text-primary text-success text-center">@ViewBag.MensajeExito</div>
+    }
+    if (!string.IsNullOrEmpty(ViewBag.MensajeError))
+    {
+        <div class="text-primary text-danger text-center">>@ViewBag.MensajeError</div>
+    }
+}

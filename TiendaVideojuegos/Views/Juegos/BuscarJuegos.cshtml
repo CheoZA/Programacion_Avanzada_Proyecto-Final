@@ -1,0 +1,74 @@
+﻿@using TiendaVideojuegos.Models
+@model List<Juego>
+@{
+    ViewBag.Title = "Buscar Juegos";
+}
+<div class="panel panel-default">
+    <div class="panel-heading" style="background:#2C3E50; color:#ffffff;"><h2 style="text-align:center; font-family:Arial; font-weight:700;">Buscar Producto por:</h2></div>
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            <div class="form-horizontal">
+                <fieldset>
+                    <div class="row" style="padding-bottom:8px;">
+                        <div class="form-group col-md-4">
+                            @Html.Label("Nombre", new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.TextBox("txtNombre", null, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.Label("Genero", htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9 dropdown">
+                                @Html.DropDownList("genero", ViewBag.ListaGeneros as SelectList, "Seleccione un género", htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.Label("Desarrollador", htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9 dropdown">
+                                @Html.DropDownList("desarrollador", ViewBag.ListaDesarrolladores as SelectList, "Seleccione un desarrollador", htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="form-actions">
+                <input class="btn btn-primary" type="submit" value="Buscar" />
+            </div>
+
+        }
+    </div>
+</div>
+
+<table class="table table-striped">
+    <tr>
+        <th>Código</th>
+        <th>Descripción</th>
+        <th>Genero</th>
+        <th>Desarrollador</th>
+        <th>Categoria</th>
+        <th>Precio Unitario</th>
+        <th>En almacen</th>
+
+    </tr>
+    @foreach (var juego in Model)
+    {
+        <tr>
+            <td>@juego.IdJuego</td>
+            <td>@juego.NombreJuego</td>
+            <td>@juego.Genero.NombreGenero</td>
+            <td>@juego.Desarrollador.NombreDesarrollador</td>
+            <td>@juego.Clasificacion</td>
+            <td>@juego.Precio</td>
+            <td>@juego.CantidadEnStock</td>
+        </tr>
+    }
+    <tr></tr>
+</table>
+
+@{
+    if (!string.IsNullOrEmpty(ViewBag.MensajeError))
+    {
+        <div class="text-primary text-danger text-center">>@ViewBag.MensajeError</div>
+    }
+}

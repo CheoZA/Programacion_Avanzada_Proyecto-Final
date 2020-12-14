@@ -1,0 +1,34 @@
+﻿
+@model List<TiendaVideojuegos.Models.Factura>
+
+@{
+    ViewBag.Title = "Reporte Ventas";
+}
+<h2>Reporte de Ventas</h2>
+
+<table class="table">
+    <thead>
+        <tr class="bg-primary">
+            <th>Id Factura</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>IVA</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var factura in Model)
+        {
+            <tr>
+                <td>@factura.IdFactura</td>
+                <td>@factura.Cliente.Nombre @factura.Cliente.Apellido</td>
+                <td>@factura.FechaFactura</td>
+                <td>@factura.Iva</td>
+                <td>@factura.ImporteTotal</td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>

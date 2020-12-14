@@ -1,0 +1,32 @@
+﻿@model TiendaVideojuegos.Models.Vendedor
+@{
+    ViewBag.Title = Model.Nombre + ' ' + Model.ApellidoPaterno;
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/">Vendedor</a></li>
+    <li class="active">@(Model.Nombre + ' ' + Model.ApellidoPaterno)</li>
+
+</ol>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Informacion Personal</div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>Id</dt>
+            <dd>@Model.IdVendedor</dd>
+
+            <dt>Nombre</dt>
+            <dd>@Model.Nombre</dd>
+
+            <dt>Apellidos</dt>
+            <dd>@(Model.ApellidoPaterno + ' ' + Model.ApellidoMaterno)</dd>
+
+            <dt>Teléfono</dt>
+            <dd>@Model.Telefono</dd>
+        </dl>
+    </div>
+    <div class="form-actions">
+        |@Html.ActionLink("Regresar al Listado", "Index")
+    </div>
+</div>

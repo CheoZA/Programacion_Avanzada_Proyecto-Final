@@ -1,0 +1,45 @@
+﻿@model TiendaVideojuegos.Models.Desarrollador
+
+@{
+    ViewBag.Title = "Nuevo desarrollador";
+}
+
+
+@{
+    if (!string.IsNullOrEmpty(ViewBag.MensajeInicio))
+    {
+        <div class="well well-sm text-primary text-center">@ViewBag.MensajeInicio</div>
+    }
+}
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <fieldset>
+            <div class="form-group">
+                @Html.LabelFor(model => model.NombreDesarrollador, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.NombreDesarrollador, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="form-actions col-md-offset-2">
+            <input class="btn btn-primary" type="submit" name="btnguardar" value="Guardar" />|
+            @Html.ActionLink("Regresar al Listado", "Index")
+        </div>
+    </div>
+
+}
+
+@{
+    if (!string.IsNullOrEmpty(ViewBag.MensajeExito))
+    {
+        <div class="text-primary text-success text-center">@ViewBag.MensajeExito</div>
+    }
+    if (!string.IsNullOrEmpty(ViewBag.MensajeError))
+    {
+        <div class="text-primary text-danger text-center">>@ViewBag.MensajeError</div>
+    }
+}
